@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelEase | AI Travel Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar" id="navbar">
+
+    <div class="logo">
+        🌍 <span>Travel</span>Ease
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#packages">Packages</a>
+        <a href="#ai-planner">AI Planner</a>
+        <a href="#bookings">Bookings</a>
+    </nav>
+
+    <button class="nav-btn" onclick="scrollToBooking()">
+        Plan Your Trip ✈
+    </button>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="ai-badge">
+            ✦ AI Travel Assistant
+        </div>
+
+        <h1>
+            Your Next <span>Adventure</span><br>
+            Starts Here
+        </h1>
+
+        <p>
+            Discover breathtaking destinations, personalized journeys
+            and unforgettable experiences.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn"
+                    onclick="scrollToSection('destinations')">
+                Explore Destinations →
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="scrollToSection('ai-planner')">
+                ✨ Plan My Trip
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO SEARCH -->
+
+    <div class="search-card">
+
+        <div class="search-field">
+            <label>📍 Where do you want to go?</label>
+
+            <select id="heroDestination">
+                <option value="">Select destination</option>
+                <option value="Goa">Goa</option>
+                <option value="Manali">Manali</option>
+                <option value="Paris">Paris</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Bali">Bali</option>
+                <option value="London">London</option>
+            </select>
+        </div>
+
+        <div class="search-field">
+            <label>📅 Travel Date</label>
+            <input type="date" id="heroDate">
+        </div>
+
+        <div class="search-field">
+            <label>👥 Travelers</label>
+            <input type="number" id="heroTravelers" min="1" value="2">
+        </div>
+
+        <button class="search-btn" onclick="searchTrips()">
+            Search Trips 🔎
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats-section">
+
+    <div class="stat-card">
+        <div class="stat-icon">🌍</div>
+        <h2 class="counter" data-target="6">0</h2>
+        <p>Destinations</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">✈️</div>
+        <h2 class="counter" data-target="6">0</h2>
+        <p>Tour Packages</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">📋</div>
+        <h2 class="counter" id="bookingCount">0</h2>
+        <p>Total Bookings</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">💰</div>
+        <h2>₹<span id="revenue">0</span></h2>
+        <p>Revenue</p>
+    </div>
+
+</section>
+
+
+<!-- ================= DESTINATIONS ================= -->
+
+<section class="section" id="destinations">
+
+    <div class="section-heading">
+
+        <span>DISCOVER THE WORLD</span>
+
+        <h2>
+            Explore Popular <strong>Destinations</strong>
+        </h2>
+
+        <p>
+            Find your perfect destination and start planning
+            your next unforgettable adventure.
+        </p>
+
+    </div>
+
+
+    <div class="destination-grid">
+
+        <!-- GOA -->
+
+        <div class="destination-card">
+
+            <div class="destination-image">
+                <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1000&q=85"
+                     alt="Goa beach">
+
+                <button class="heart-btn"
+                        onclick="toggleFavorite(this)">
+                    ♡
+                </button>
+
+                <span class="image-tag">India</span>
+            </div>
+
+            <div class="destination-info">
+
+                <div class="rating">★★★★★ <span>4.9</span></div>
+
+                <h3>Goa</h3>
+
+                <p>
+                    Tropical beaches, vibrant nightlife and
+                    unforgettable coastal experiences.
+                </p>
+
+                <div class="destination-bottom">
+
+                    <div>
+                        <small>Starting from</small>
+                        <strong>₹15,000</strong>
+                    </div>
+
+                    <button onclick="exploreDestination('Goa')">
+                        Explore →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MANALI -->
+
+        <div class="destination-card">
+
+            <div class="destination-image">
+
+                <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=85"
+                     alt="Manali mountains">
+
+                <button class="heart-btn"
+                        onclick="toggleFavorite(this)">
+                    ♡
+                </button>
+
+                <span class="image-tag">India</span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <div class="rating">★★★★★ <span>4.8</span></div>
+
+                <h3>Manali</h3>
+
+                <p>
+                    Snow-covered mountains, peaceful valleys
+                    and thrilling adventures.
+                </p>
+
+                <div class="destination-bottom">
+
+                    <div>
+                        <small>Starting from</small>
+                        <strong>₹18,000</strong>
+                    </div>
+
+                    <button onclick="exploreDestination('Manali')">
+                        Explore →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PARIS -->
+
+        <div class="destination-card">
+
+            <div class="destination-image">
+
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=85"
+                     alt="Paris Eiffel Tower">
+
+                <button class="heart-btn"
+                        onclick="toggleFavorite(this)">
+                    ♡
+                </button>
+
+                <span class="image-tag">France</span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <div class="rating">★★★★★ <span>4.9</span></div>
+
+                <h3>Paris</h3>
+
+                <p>
+                    Romance, elegant streets, iconic landmarks
+                    and unforgettable cuisine.
+                </p>
+
+                <div class="destination-bottom">
+
+                    <div>
+                        <small>Starting from</small>
+                        <strong>₹85,000</strong>
+                    </div>
+
+                    <button onclick="exploreDestination('Paris')">
+                        Explore →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DUBAI -->
+
+        <div class="destination-card">
+
+            <div class="destination-image">
+
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1000&q=85"
+                     alt="Dubai skyline">
+
+                <button class="heart-btn"
+                        onclick="toggleFavorite(this)">
+                    ♡
+                </button>
+
+                <span class="image-tag">UAE</span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <div class="rating">★★★★★ <span>4.8</span></div>
+
+                <h3>Dubai</h3>
+
+                <p>
+                    Luxury shopping, futuristic architecture
+                    and incredible experiences.
+                </p>
+
+                <div class="destination-bottom">
+
+                    <div>
+                        <small>Starting from</small>
+                        <strong>₹65,000</strong>
+                    </div>
+
+                    <button onclick="exploreDestination('Dubai')">
+                        Explore →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BALI -->
+
+        <div class="destination-card">
+
+            <div class="destination-image">
+
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=85"
+                     alt="Bali">
+
+                <button class="heart-btn"
+                        onclick="toggleFavorite(this)">
+                    ♡
+                </button>
+
+                <span class="image-tag">Indonesia</span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <div class="rating">★★★★★ <span>4.9</span></div>
+
+                <h3>Bali</h3>
+
+                <p>
+                    Tropical paradise, luxury resorts, beaches
+                    and peaceful nature.
+                </p>
+
+                <div class="destination-bottom">
+
+                    <div>
+                        <small>Starting from</small>
+                        <strong>₹55,000</strong>
+                    </div>
+
+                    <button onclick="exploreDestination('Bali')">
+                        Explore →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LONDON -->
+
+        <div class="destination-card">
+
+            <div class="destination-image">
+
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1000&q=85"
+                     alt="London">
+
+                <button class="heart-btn"
+                        onclick="toggleFavorite(this)">
+                    ♡
+                </button>
+
+                <span class="image-tag">UK</span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <div class="rating">★★★★★ <span>4.8</span></div>
+
+                <h3>London</h3>
+
+                <p>
+                    Historic landmarks, modern culture and
+                    iconic city experiences.
+                </p>
+
+                <div class="destination-bottom">
+
+                    <div>
+                        <small>Starting from</small>
+                        <strong>₹78,000</strong>
+                    </div>
+
+                    <button onclick="exploreDestination('London')">
+                        Explore →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PACKAGES ================= -->
+
+<section class="section package-section" id="packages">
+
+    <div class="section-heading">
+
+        <span>TRAVEL PACKAGES</span>
+
+        <h2>
+            Choose Your Perfect <strong>Adventure</strong>
+        </h2>
+
+        <p>
+            Carefully designed packages for unforgettable journeys.
+        </p>
+
+    </div>
+
+
+    <div class="package-grid">
+
+
+        <!-- PACKAGE 1 -->
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1000&q=85"
+                 alt="Goa Beach Escape">
+
+            <div class="package-content">
+
+                <div class="package-rating">
+                    ★★★★★ 4.9
+                </div>
+
+                <h3>Goa Beach Escape</h3>
+
+                <div class="package-features">
+                    <span>🕐 4 Days</span>
+                    <span>🏨 Hotel</span>
+                    <span>🍴 Food</span>
+                    <span>📸 Sightseeing</span>
+                </div>
+
+                <div class="package-price">
+                    <small>Starting from</small>
+                    <strong>₹15,000</strong>
+                </div>
+
+                <button class="book-btn"
+                        onclick="selectPackage('Goa Beach Escape',15000,'Goa')">
+                    Book Now ✈
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PACKAGE 2 -->
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=85"
+                 alt="Manali Adventure">
+
+            <div class="package-content">
+
+                <div class="package-rating">
+                    ★★★★★ 4.8
+                </div>
+
+                <h3>Manali Adventure</h3>
+
+                <div class="package-features">
+                    <span>🕐 5 Days</span>
+                    <span>🏨 Hotel</span>
+                    <span>🍴 Food</span>
+                    <span>📸 Sightseeing</span>
+                </div>
+
+                <div class="package-price">
+                    <small>Starting from</small>
+                    <strong>₹18,000</strong>
+                </div>
+
+                <button class="book-btn"
+                        onclick="selectPackage('Manali Adventure',18000,'Manali')">
+                    Book Now ✈
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PACKAGE 3 -->
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=85"
+                 alt="Paris Experience">
+
+            <div class="package-content">
+
+                <div class="package-rating">
+                    ★★★★★ 4.9
+                </div>
+
+                <h3>Paris Experience</h3>
+
+                <div class="package-features">
+                    <span>🕐 6 Days</span>
+                    <span>🏨 Hotel</span>
+                    <span>🍴 Food</span>
+                    <span>📸 Sightseeing</span>
+                </div>
+
+                <div class="package-price">
+                    <small>Starting from</small>
+                    <strong>₹85,000</strong>
+                </div>
+
+                <button class="book-btn"
+                        onclick="selectPackage('Paris Experience',85000,'Paris')">
+                    Book Now ✈
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PACKAGE 4 -->
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1000&q=85"
+                 alt="Dubai Luxury">
+
+            <div class="package-content">
+
+                <div class="package-rating">
+                    ★★★★★ 4.8
+                </div>
+
+                <h3>Dubai Luxury</h3>
+
+                <div class="package-features">
+                    <span>🕐 5 Days</span>
+                    <span>🏨 Hotel</span>
+                    <span>🍴 Food</span>
+                    <span>📸 Sightseeing</span>
+                </div>
+
+                <div class="package-price">
+                    <small>Starting from</small>
+                    <strong>₹65,000</strong>
+                </div>
+
+                <button class="book-btn"
+                        onclick="selectPackage('Dubai Luxury',65000,'Dubai')">
+                    Book Now ✈
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PACKAGE 5 -->
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=85"
+                 alt="Bali Paradise">
+
+            <div class="package-content">
+
+                <div class="package-rating">
+                    ★★★★★ 4.9
+                </div>
+
+                <h3>Bali Paradise</h3>
+
+                <div class="package-features">
+                    <span>🕐 6 Days</span>
+                    <span>🏨 Hotel</span>
+                    <span>🍴 Food</span>
+                    <span>📸 Sightseeing</span>
+                </div>
+
+                <div class="package-price">
+                    <small>Starting from</small>
+                    <strong>₹55,000</strong>
+                </div>
+
+                <button class="book-btn"
+                        onclick="selectPackage('Bali Paradise',55000,'Bali')">
+                    Book Now ✈
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PACKAGE 6 -->
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1000&q=85"
+                 alt="London Explorer">
+
+            <div class="package-content">
+
+                <div class="package-rating">
+                    ★★★★★ 4.8
+                </div>
+
+                <h3>London Explorer</h3>
+
+                <div class="package-features">
+                    <span>🕐 6 Days</span>
+                    <span>🏨 Hotel</span>
+                    <span>🍴 Food</span>
+                    <span>📸 Sightseeing</span>
+                </div>
+
+                <div class="package-price">
+                    <small>Starting from</small>
+                    <strong>₹78,000</strong>
+                </div>
+
+                <button class="book-btn"
+                        onclick="selectPackage('London Explorer',78000,'London')">
+                    Book Now ✈
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= AI PLANNER ================= -->
+
+<section class="ai-section" id="ai-planner">
+
+    <div class="ai-container">
+
+        <div class="section-heading">
+
+            <span>✦ POWERED BY AI</span>
+
+            <h2>
+                AI Travel <strong>Planner</strong>
+            </h2>
+
+            <p>
+                Tell us what kind of trip you want.
+                Our AI will help you find the perfect destination.
+            </p>
+
+        </div>
+
+
+        <div class="ai-card">
+
+            <div class="ai-card-header">
+
+                <div class="ai-avatar">
+                    ✦
+                </div>
+
+                <div>
+                    <h3>Your AI Travel Assistant</h3>
+                    <p>Let's create your perfect trip.</p>
+                </div>
+
+            </div>
+
+
+            <div class="planner-grid">
+
+                <div class="form-group">
+
+                    <label>Destination Preference</label>
+
+                    <select id="aiDestination">
+
+                        <option value="Any">Anywhere</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Manali">Manali</option>
+                        <option value="Paris">Paris</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Bali">Bali</option>
+                        <option value="London">London</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Budget</label>
+
+                    <input type="number"
+                           id="aiBudget"
+                           placeholder="Example: 30000">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Travelers</label>
+
+                    <input type="number"
+                           id="aiTravelers"
+                           value="2"
+                           min="1">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Duration</label>
+
+                    <select id="aiDuration">
+
+                        <option>3 Days</option>
+                        <option>4 Days</option>
+                        <option>5 Days</option>
+                        <option>6 Days</option>
+                        <option>7 Days</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <label class="style-label">
+                What is your travel style?
+            </label>
+
+            <div class="travel-styles">
+
+                <button onclick="selectStyle(this,'Adventure')">
+                    🏔 Adventure
+                </button>
+
+                <button onclick="selectStyle(this,'Beach')">
+                    🏖 Beach
+                </button>
+
+                <button onclick="selectStyle(this,'Luxury')">
+                    💎 Luxury
+                </button>
+
+                <button onclick="selectStyle(this,'Romantic')">
+                    💕 Romantic
+                </button>
+
+                <button onclick="selectStyle(this,'Family')">
+                    👨‍👩‍👧 Family
+                </button>
+
+                <button onclick="selectStyle(this,'Nature')">
+                    🌿 Nature
+                </button>
+
+            </div>
+
+
+            <button class="create-trip-btn"
+                    onclick="createTrip()">
+                ✨ Create My Trip
+            </button>
+
+
+            <!-- AI RESULT -->
+
+            <div id="aiResult" class="ai-result">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BOOKING ================= -->
+
+<section class="booking-section" id="booking">
+
+    <div class="booking-container">
+
+        <div class="section-heading">
+
+            <span>SECURE YOUR JOURNEY</span>
+
+            <h2>
+                Book Your <strong>Adventure</strong>
+            </h2>
+
+        </div>
+
+
+        <div class="booking-card">
+
+
+            <!-- STEPS -->
+
+            <div class="booking-steps">
+
+                <div class="step active" id="stepIndicator1">
+                    <span>1</span>
+                    Personal
+                </div>
+
+                <div class="step" id="stepIndicator2">
+                    <span>2</span>
+                    Trip Details
+                </div>
+
+                <div class="step" id="stepIndicator3">
+                    <span>3</span>
+                    Summary
+                </div>
+
+            </div>
+
+
+            <!-- STEP 1 -->
+
+            <div class="booking-step-content active"
+                 id="bookingStep1">
+
+                <h3>👤 Personal Details</h3>
+
+                <div class="booking-grid">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input type="text"
+                               id="fullName"
+                               placeholder="Enter your name"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input type="email"
+                               id="email"
+                               placeholder="you@example.com"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Phone</label>
+
+                        <input type="tel"
+                               id="phone"
+                               placeholder="+91 9876543210"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <button class="next-btn"
+                        onclick="nextStep(1)">
+                    Continue →
+                </button>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="booking-step-content"
+                 id="bookingStep2">
+
+                <h3>✈️ Trip Details</h3>
+
+                <div class="booking-grid">
+
+                    <div class="form-group">
+
+                        <label>Package</label>
+
+                        <select id="packageSelect"
+                                onchange="updatePackagePrice()">
+
+                            <option value="">
+                                Select Package
+                            </option>
+
+                            <option value="Goa Beach Escape">
+                                Goa Beach Escape — ₹15,000
+                            </option>
+
+                            <option value="Manali Adventure">
+                                Manali Adventure — ₹18,000
+                            </option>
+
+                            <option value="Paris Experience">
+                                Paris Experience — ₹85,000
+                            </option>
+
+                            <option value="Dubai Luxury">
+                                Dubai Luxury — ₹65,000
+                            </option>
+
+                            <option value="Bali Paradise">
+                                Bali Paradise — ₹55,000
+                            </option>
+
+                            <option value="London Explorer">
+                                London Explorer — ₹78,000
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Travel Date</label>
+
+                        <input type="date"
+                               id="travelDate"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Number of Travelers</label>
+
+                        <input type="number"
+                               id="travelers"
+                               value="1"
+                               min="1"
+                               onchange="updateBookingTotal()">
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-actions">
+
+                    <button class="back-btn"
+                            onclick="previousStep(2)">
+                        ← Back
+                    </button>
+
+                    <button class="next-btn"
+                            onclick="nextStep(2)">
+                        Continue →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="booking-step-content"
+                 id="bookingStep3">
+
+                <h3>📋 Booking Summary</h3>
+
+
+                <div class="summary-card">
+
+                    <div>
+                        <span>Customer</span>
+                        <strong id="summaryName">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Destination</span>
+                        <strong id="summaryDestination">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Package</span>
+                        <strong id="summaryPackage">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Travel Date</span>
+                        <strong id="summaryDate">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Travelers</span>
+                        <strong id="summaryTravelers">-</strong>
+                    </div>
+
+                    <div class="total-row">
+                        <span>Total Amount</span>
+                        <strong id="summaryAmount">₹0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="booking-actions">
+
+                    <button class="back-btn"
+                            onclick="previousStep(3)">
+                        ← Back
+                    </button>
+
+                    <button class="confirm-btn"
+                            onclick="confirmBooking()">
+                        Confirm & Book Trip ✈
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BOOKING MANAGEMENT ================= -->
+
+<section class="section" id="bookings">
+
+    <div class="section-heading">
+
+        <span>BOOKING MANAGEMENT</span>
+
+        <h2>
+            Your <strong>Bookings</strong>
+        </h2>
+
+    </div>
+
+
+    <div class="management-card">
+
+        <div class="management-tools">
+
+            <input type="text"
+                   id="bookingSearch"
+                   placeholder="🔎 Search bookings..."
+                   onkeyup="filterBookings()">
+
+            <select id="destinationFilter"
+                    onchange="filterBookings()">
+
+                <option value="">All Destinations</option>
+                <option value="Goa">Goa</option>
+                <option value="Manali">Manali</option>
+                <option value="Paris">Paris</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Bali">Bali</option>
+                <option value="London">London</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Customer</th>
+                        <th>Destination</th>
+                        <th>Package</th>
+                        <th>Travel Date</th>
+                        <th>Travelers</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="bookingTableBody">
+
+                    <tr class="empty-row">
+
+                        <td colspan="8">
+
+                            <div class="empty-booking">
+
+                                📋
+
+                                <h3>No bookings yet</h3>
+
+                                <p>
+                                    Your confirmed trips will appear here.
+                                </p>
+
+                                <button onclick="scrollToBooking()">
+                                    Book Your Adventure
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SUCCESS MODAL ================= -->
+
+<div class="modal" id="successModal">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>🎉 Booking Confirmed!</h2>
+
+        <p>
+            Your adventure is waiting for you.
+        </p>
+
+        <div class="success-details"
+             id="successDetails">
+        </div>
+
+        <button class="primary-btn"
+                onclick="closeModal()">
+            Done ✓
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= AI FLOATING BUTTON ================= -->
+
+<button class="ai-floating-btn"
+        onclick="toggleChat()">
+    ✦ AI
+</button>
+
+
+<!-- ================= CHATBOT ================= -->
+
+<div class="chatbot" id="chatbot">
+
+    <div class="chat-header">
+
+        <div>
+            ✦ <strong>TravelEase AI</strong>
+        </div>
+
+        <button onclick="toggleChat()">×</button>
+
+    </div>
+
+
+    <div class="chat-body"
+         id="chatBody">
+
+        <div class="bot-message">
+
+            Hi! 👋 I'm your AI Travel Assistant.
+
+            <br><br>
+
+            Where would you like to travel?
+
+        </div>
+
+    </div>
+
+
+    <div class="suggestions">
+
+        <button onclick="chatAnswer('Best beach destination?')">
+            Best beach destination?
+        </button>
+
+        <button onclick="chatAnswer('Trip under ₹20,000')">
+            Trip under ₹20,000
+        </button>
+
+        <button onclick="chatAnswer('Best honeymoon destination?')">
+            Best honeymoon destination?
+        </button>
+
+        <button onclick="chatAnswer('Best family trip?')">
+            Best family trip?
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+                🌍 TravelEase
+            </div>
+
+            <p>
+                Your journey. Our expertise.
+            </p>
+
+            <div class="socials">
+
+                <a href="#">f</a>
+                <a href="#">𝕏</a>
+                <a href="#">in</a>
+                <a href="#">◎</a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <a href="#home">Home</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#packages">Packages</a>
+            <a href="#ai-planner">AI Planner</a>
+
+        </div>
+
+
+        <div>
+
+            <h4>Travel</h4>
+
+            <a href="#bookings">Bookings</a>
+            <a href="#packages">Tour Packages</a>
+            <a href="#destinations">Explore</a>
+
+        </div>
+
+
+        <div>
+
+            <h4>Contact</h4>
+
+            <p>📧 hello@travelease.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Bengaluru, India</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 TravelEase. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
